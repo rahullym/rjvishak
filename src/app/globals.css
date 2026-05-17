@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+    --color-deep-charcoal: #1A0D10;
+    --color-muted-gold: #C02E4C;
+    --color-slate-blue: #800020;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+}
+
+body {
+    background-color: #fafafa;
+    color: var(--color-deep-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
