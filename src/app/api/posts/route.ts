@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { marked } from "marked";
 import { dbConnect } from "@/lib/mongoose";
-import { Post } from "@/models/Post";
+import { Post, type PostDoc } from "@/models/Post";
 import { corsHeaders } from "@/lib/cors";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     const posts = await Post.find(query)
         .sort({ publishedAt: -1, createdAt: -1 })
         .limit(limit)
-        .lean();
+        .lean<PostDoc[]>();
 
     const data = posts.map((p) => ({
         id: String(p._id),

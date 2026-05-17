@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { dbConnect } from "@/lib/mongoose";
-import { Post } from "@/models/Post";
+import { Post, type PostDoc } from "@/models/Post";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminHome() {
     await dbConnect();
-    const posts = await Post.find().sort({ updatedAt: -1 }).lean();
+    const posts = await Post.find().sort({ updatedAt: -1 }).lean<PostDoc[]>();
 
     return (
         <div>

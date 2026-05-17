@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { marked } from "marked";
 import { dbConnect } from "@/lib/mongoose";
-import { Post } from "@/models/Post";
+import { Post, type PostDoc } from "@/models/Post";
 import { corsHeaders } from "@/lib/cors";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export async function OPTIONS() {
 export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     await dbConnect();
-    const post = await Post.findOne({ slug, published: true }).lean();
+    const post = await Post.findOne({ slug, published: true }).lean<PostDoc>();
     if (!post) {
         return NextResponse.json({ error: "Not found" }, { status: 404, headers: corsHeaders() });
     }
