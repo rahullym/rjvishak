@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models, type Model } from "mongoose";
 
 export interface PostDoc {
     _id: mongoose.Types.ObjectId;
@@ -32,4 +32,5 @@ const PostSchema = new Schema<PostDoc>(
 
 PostSchema.index({ published: 1, publishedAt: -1 });
 
-export const Post = models.Post || model<PostDoc>("Post", PostSchema);
+export const Post: Model<PostDoc> =
+    (models.Post as Model<PostDoc>) || model<PostDoc>("Post", PostSchema);
