@@ -2,7 +2,7 @@
 
 Custom blog CMS for [rjvisakh.com](https://rjvisakh.com) — Next.js 15 + MongoDB + NextAuth + Tailwind.
 
-- **Admin UI** at `/admin` — login, list posts, markdown editor with live preview, publish/unpublish, delete.
+- **Admin UI** at `/admin` — login, list posts, WYSIWYG editor (TipTap) with toolbar, inline image upload (Vercel Blob), publish/unpublish, delete.
 - **Public REST API** (CORS-enabled) for the Astro site to consume:
   - `GET /api/posts` — list published posts (supports `?limit=10&tag=pmp&html=1`)
   - `GET /api/posts/[slug]` — single published post (returns markdown + rendered HTML)
@@ -27,6 +27,8 @@ Fill in:
 - `AUTH_SECRET` — generate with `openssl rand -base64 32`
 - `ADMIN_EMAIL` and `ADMIN_PASSWORD` — your initial admin credentials
 - `PUBLIC_CORS_ORIGIN` — the Astro site's origin (e.g. `https://www.rjvisakh.com`); use `*` only in dev
+- `BLOB_READ_WRITE_TOKEN` — required only if you want to upload images in the editor.
+  Create a Blob store in your Vercel project (Storage → Create → Blob), then `vercel env pull` to sync to local `.env`.
 
 ### 3. Seed the admin user
 ```bash
