@@ -9,6 +9,7 @@
     "lint": "next lint",
     "seed": "tsx scripts/seed-admin.ts",
     "seed:blogs": "tsx scripts/seed-blogs.ts",
+    "seed:blog:pmp-cert": "tsx scripts/seed-blog-pmp-cert-india.ts",
     "migrate:html": "tsx scripts/migrate-to-html.ts"
   },
   "dependencies": {
