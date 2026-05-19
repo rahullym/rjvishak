@@ -27,8 +27,9 @@ Fill in:
 - `AUTH_SECRET` — generate with `openssl rand -base64 32`
 - `ADMIN_EMAIL` and `ADMIN_PASSWORD` — your initial admin credentials
 - `PUBLIC_CORS_ORIGIN` — the Astro site's origin (e.g. `https://www.rjvisakh.com`); use `*` only in dev
-- `BLOB_READ_WRITE_TOKEN` — required only if you want to upload images in the editor.
-  Create a Blob store in your Vercel project (Storage → Create → Blob), then `vercel env pull` to sync to local `.env`.
+- `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_BUCKET` — required only if you want to upload images in the editor.
+  Create an S3 bucket and an IAM user with `s3:PutObject` permission. The bucket must allow public read on uploaded objects (bucket policy or ACL on `posts/*`).
+  Optional `AWS_S3_PUBLIC_URL` — set to your CloudFront distribution URL (no trailing slash) if you serve uploads through a CDN.
 
 ### 3. Seed the admin user
 ```bash
